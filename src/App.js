@@ -10,7 +10,13 @@ import Navigation from './component/navigation/Navigation';
 
 const App = () => {
   // const Stack = createNativeStackNavigator();
-  return <Navigation />;
+  return (
+    <View>
+      <Text>
+        ytyuik
+      </Text>
+    </View>
+  )
 };
 
 export default App;
