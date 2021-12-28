@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.11",
+    "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.5",
     "metro-config": "^0.66.2",
     "react": "17.0.2",
@@ -20,8 +21,7 @@
     "react-native-navigation": "^7.24.3",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.10.1",
-    "react-native-svg": "^12.1.1",
-    "react-native-svg-transformer": "^0.14.3"
+    "react-native-svg": "^12.1.1"
   },
   "devDependencies": {
     "@babel/core": "7.16.5",
@@ -31,6 +31,7 @@
     "eslint": "7.14.0",
     "jest": "26.6.3",
     "metro-react-native-babel-preset": "^0.66.2",
+    "react-native-svg-transformer": "^0.14.3",
     "react-test-renderer": "17.0.2"
   },
   "jest": {

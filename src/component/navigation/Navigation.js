@@ -135,15 +135,18 @@ const Navigation = () => {
   const Stack = createNativeStackNavigator();
 
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Gradient" component={GradientScreen} />
-        <Stack.Screen name="textGradient" component={TextGradientScreen} />
-        <Stack.Screen name="TextFont" component={TextFontScreen} />
-        <Stack.Screen name="SvgComponent" component={SvgScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <View style={{flex:1}}>
+      <NavigationContainer >
+        <Stack.Navigator initialRouteName="Home" >
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Gradient" component={GradientScreen} />
+          <Stack.Screen name="textGradient" component={TextGradientScreen} />
+          <Stack.Screen name="TextFont" component={TextFontScreen} />
+          <Stack.Screen name="SvgComponent" component={SvgScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </View>
+
   );
 };
 
