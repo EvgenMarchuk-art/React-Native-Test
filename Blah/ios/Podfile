@@ -1,10 +1,9 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-
 platform :ios, '11.0'
 
-target 'AwesomeProject' do
+target 'Blah' do
   config = use_native_modules!
 
   use_react_native!(
@@ -13,13 +12,10 @@ target 'AwesomeProject' do
     :hermes_enabled => false
   )
 
-
-  target 'AwesomeProjectTests' do
+  target 'BlahTests' do
     inherit! :complete
     # Pods for testing
   end
-
-
 
   # Enables Flipper.
   #
@@ -32,8 +28,3 @@ target 'AwesomeProject' do
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
 end
-
-
-
-
-
