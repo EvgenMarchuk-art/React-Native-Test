@@ -2,15 +2,14 @@ import React, {Component, useState, useRef} from 'react';
 
 import {
   SafeAreaView,
-  StyleSheet,
   TextInput,
   View,
-  Text,
   TouchableWithoutFeedback,
 } from 'react-native';
 
-import Styles from '../../Style';
 import Eye from '../../assets/svg-image/Eye.svg';
+
+import RegisterFormStyle from './RegisterFormStyle';
 
 const UselessTextInput = () => {
   const [text, onChangeText] = useState('');
@@ -39,36 +38,36 @@ const UselessTextInput = () => {
   }
 
   return (
-    <View style={{flex: 1, justifyContent: 'center'}}>
+    <View style={RegisterFormStyle.FirstViewStyle}>
       <SafeAreaView>
         <TextInput
-          style={Styles.input}
+          style={RegisterFormStyle.input}
           onChangeText={onChangeText}
           placeholder="Name"
         />
         <TextInput
-          style={Styles.input}
+          style={RegisterFormStyle.input}
           onChangeText={onChangeText}
           placeholder="Surname"
         />
 
         <TextInput
-          style={Styles.input}
+          style={RegisterFormStyle.input}
           placeholder="НОМЕР ТЕЛЕФОНА"
           keyboardType="numeric"
           onChangeText={text => setPhone(text)}
           value={onChangePhone(phone)}
         />
 
-        <View style={Styles.passStyle}>
+        <View style={RegisterFormStyle.passStyle}>
           <TextInput
             placeholder="Пароль"
             secureTextEntry={passwordShown}
             keyboardType="numbers-and-punctuation"
-            style={{flex: 1}}
+            style={RegisterFormStyle.TextInputStyle}
           />
           <TouchableWithoutFeedback onPress={() => togglePasswordVisibility()}>
-            <Eye style={{width: 30, height: 30}} />
+            <Eye style={RegisterFormStyle.EyeStyle} />
           </TouchableWithoutFeedback>
         </View>
       </SafeAreaView>

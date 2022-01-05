@@ -1,23 +1,34 @@
 import React from 'react';
-import {Button, ScrollView, Text, View} from 'react-native';
-import SvgComponent from './component/svg/svg-component';
-import Gradient from './component/gradient/Gradient.js';
-import TextFont from './component/textFont/TextFont';
+import { Button, FlatList, ScrollView, Text, View } from "react-native";
 
-import TextGradient from './component/textGradient/TextGradient';
-import {Dimensions} from 'react-native';
-import Navigation from './component/navigation/Navigation';
-import RegisterForm from './component/user-form/RegisterForm';
-import EyePass from './component/svg/EyePass';
-import Multiple from './component/multiple /multiple';
+import RegisterForm from './component/registerForm/RegisterForm';
+import Multiple from './component/multiple /Multiple';
+import DropdownComponent from './component/DropDown/DropDown';
+import DropDown from './component/DropDown/DropDown';
+import PopUp from './component/popUp/PopUp';
+
+import X from './assets/svg-image/XClose.svg';
+import FlatListComponent from "./component/FlatListComponent";
 
 const App = () => {
   // const Stack = createNativeStackNavigator();
   return (
-    <View>
-      {/*<Navigation/>*/}
+    <View
+      style={{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        marginTop: 100,
+        alignItems: 'center',
+      }}>
       <RegisterForm />
+      <View style={{width: 360}}>
+        <DropdownComponent />
+      </View>
+      <PopUp />
+      <FlatListComponent/>
       {/*<Multiple />*/}
+      {/*<X/>*/}
     </View>
   );
 };

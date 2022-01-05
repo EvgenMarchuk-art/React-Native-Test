@@ -43,17 +43,17 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AwesomeProject/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = AwesomeProject/main.m; sourceTree = "<group>"; };
 		3A88DA13D4BC78CB35F62D78 /* libPods-AwesomeProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AwesomeProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		58F5507D86B744A397BA6ACE /* SFUIDisplay-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Medium.otf"; path = "../src/assets/font/SFUIDisplay-Medium.otf"; sourceTree = "<group>"; };
-		60297A784F214EA8A0FA4F8F /* Notable-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Notable-Regular.ttf"; path = "../src/assets/font/Notable-Regular.ttf"; sourceTree = "<group>"; };
-		66834A0011944B739969B876 /* SFUIDisplay-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Light.otf"; path = "../src/assets/font/SFUIDisplay-Light.otf"; sourceTree = "<group>"; };
-		675DD0E3F1CF4AC39F410006 /* SFUIDisplay-Semibold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Semibold.otf"; path = "../src/assets/font/SFUIDisplay-Semibold.otf"; sourceTree = "<group>"; };
-		6F122CD186164CE6B3CFD8FC /* SFUIDisplay-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Bold.otf"; path = "../src/assets/font/SFUIDisplay-Bold.otf"; sourceTree = "<group>"; };
+		58F5507D86B744A397BA6ACE /* SFUIDisplay-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Medium.otf"; path = "../src/assets/font/SFUIDisplay-Medium.otf"; sourceTree = "<group>"; };
+		60297A784F214EA8A0FA4F8F /* Notable-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Notable-Regular.ttf"; path = "../src/assets/font/Notable-Regular.ttf"; sourceTree = "<group>"; };
+		66834A0011944B739969B876 /* SFUIDisplay-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Light.otf"; path = "../src/assets/font/SFUIDisplay-Light.otf"; sourceTree = "<group>"; };
+		675DD0E3F1CF4AC39F410006 /* SFUIDisplay-Semibold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Semibold.otf"; path = "../src/assets/font/SFUIDisplay-Semibold.otf"; sourceTree = "<group>"; };
+		6F122CD186164CE6B3CFD8FC /* SFUIDisplay-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Bold.otf"; path = "../src/assets/font/SFUIDisplay-Bold.otf"; sourceTree = "<group>"; };
 		7BED97F96BEAD4027125C4AD /* Pods-AwesomeProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeProject.release.xcconfig"; path = "Target Support Files/Pods-AwesomeProject/Pods-AwesomeProject.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = AwesomeProject/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		922E1E0D52590F745774C466 /* Pods-AwesomeProject-AwesomeProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeProject-AwesomeProjectTests.debug.xcconfig"; path = "Target Support Files/Pods-AwesomeProject-AwesomeProjectTests/Pods-AwesomeProject-AwesomeProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A70EC0A3AA6375EBFC6AD46B /* libPods-AwesomeProject-AwesomeProjectTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AwesomeProject-AwesomeProjectTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB40F23EB7DA48C2755BF7D3 /* Pods-AwesomeProject-AwesomeProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeProject-AwesomeProjectTests.release.xcconfig"; path = "Target Support Files/Pods-AwesomeProject-AwesomeProjectTests/Pods-AwesomeProject-AwesomeProjectTests.release.xcconfig"; sourceTree = "<group>"; };
-		B87693F6789943E089E0E024 /* SFUIDisplay-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Regular.otf"; path = "../src/assets/font/SFUIDisplay-Regular.otf"; sourceTree = "<group>"; };
+		B87693F6789943E089E0E024 /* SFUIDisplay-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Regular.otf"; path = "../src/assets/font/SFUIDisplay-Regular.otf"; sourceTree = "<group>"; };
 		ECFCE7BEEC7C5A53D3EA7F8B /* Pods-AwesomeProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeProject.debug.xcconfig"; path = "Target Support Files/Pods-AwesomeProject/Pods-AwesomeProject.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -158,7 +158,6 @@
 				922E1E0D52590F745774C466 /* Pods-AwesomeProject-AwesomeProjectTests.debug.xcconfig */,
 				AB40F23EB7DA48C2755BF7D3 /* Pods-AwesomeProject-AwesomeProjectTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -173,7 +172,6 @@
 				675DD0E3F1CF4AC39F410006 /* SFUIDisplay-Semibold.otf */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
