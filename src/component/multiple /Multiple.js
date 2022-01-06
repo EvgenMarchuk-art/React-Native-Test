@@ -2,10 +2,12 @@
 // https://aboutreact.com/example-of-image-picker-in-react-native/
 
 // Import React
-import React, {useState} from 'react';
+import React, {useContext} from 'react';
 // Import required components
 // import { PermissionsAndroid
 // } from 'react-native-permissions';
+import {PERMISSIONS} from 'react-native-permissions';
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -26,15 +28,16 @@ import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import XClose from '../../assets/svg-image/XClose.svg';
 
 import MultipleStyle from './MultipleStyle';
+import ImagesContext from '../../provider/context';
 
-const Multiple = () => {
-  const [filePath, setFilePath] = useState([]);
+const Multiple = ({handleClose}) => {
+  const {setImages} = useContext(ImagesContext);
 
   const requestCameraPermission = async () => {
     if (Platform.OS === 'android') {
       try {
         const granted = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.CAMERA,
+          PermissionsAndroid.PERMISIONS.CAMERA,
           {
             title: 'Camera Permission',
             message: 'App needs camera permission',
@@ -50,6 +53,8 @@ const Multiple = () => {
       return true;
     }
   };
+
+
 
   const requestExternalWritePermission = async () => {
     if (Platform.OS === 'android') {
@@ -81,15 +86,13 @@ const Multiple = () => {
       quality: 1,
       videoQuality: 'low',
       durationLimit: 30, //Video max duration in seconds
-      saveToPhotos: true,
+      includeBase64: true,
     };
 
     let isCameraPermitted = await requestCameraPermission();
     let isStoragePermitted = await requestExternalWritePermission();
     if (isCameraPermitted && isStoragePermitted) {
       launchCamera(options, response => {
-        console.log('Response = ', response);
-
         if (response.didCancel) {
           alert('User cancelled camera picker');
           return;
@@ -103,9 +106,14 @@ const Multiple = () => {
           alert(response.errorMessage);
           return;
         }
-        setFilePath(response.assets[0]);
+        setImages(response.assets[0]);
       });
     }
+  };
+
+  const handleChooseImage = type => () => {
+    chooseFile(type);
+    handleClose();
   };
 
   const chooseFile = type => {
@@ -115,11 +123,10 @@ const Multiple = () => {
       maxHeight: 550,
       quality: 1,
       selectionLimit: 0,
+      includeBase64: true,
     };
 
     launchImageLibrary(options, response => {
-      console.log('Response = ', response);
-
       if (response.didCancel) {
         alert('User cancelled camera picker');
         return;
@@ -133,44 +140,13 @@ const Multiple = () => {
         alert(response.errorMessage);
         return;
       }
-      setFilePath(response.assets);
+      setImages(response.assets);
     });
   };
-
-  function onDeleteImage(uri) {
-    const newArr = filePath.filter(item => item.uri !== uri);
-    setFilePath(newArr);
-  }
 
   return (
     <SafeAreaView style={MultipleStyle.SafeAreaViewStyle}>
       <View style={MultipleStyle.container}>
-        {filePath
-          ? filePath.map((img, index) => {
-              return (
-                <View
-                  key={index}
-                  style={MultipleStyle.filePathFirstWiev}>
-                  <View>
-                    <Image
-                      source={{uri: img.uri}}
-                      style={MultipleStyle.imageStyle}
-
-                    />
-                  </View>
-
-                  <View
-                    style={MultipleStyle.ViewTouchable}>
-                    <TouchableWithoutFeedback
-                      onPress={() => onDeleteImage(img.uri)}>
-                      <XClose style={MultipleStyle.XCloseStyle}/>
-                    </TouchableWithoutFeedback>
-                  </View>
-                </View>
-              );
-            })
-          : []}
-
         <Text style={MultipleStyle.textStyle} />
         <TouchableOpacity
           activeOpacity={0.5}
@@ -181,7 +157,7 @@ const Multiple = () => {
         <TouchableOpacity
           activeOpacity={0.5}
           style={MultipleStyle.buttonStyle}
-          onPress={() => chooseFile('photo')}>
+          onPress={handleChooseImage('photo')}>
           <Text style={MultipleStyle.textStyle}>Choose Image</Text>
         </TouchableOpacity>
       </View>

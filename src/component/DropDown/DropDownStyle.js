@@ -3,7 +3,8 @@ import {StyleSheet} from 'react-native';
 
 const DropDownStyle = StyleSheet.create({
   container: {
-    padding: 16,
+     padding: 30,
+    marginLeft:15
   },
   dropdown: {
     height: 50,

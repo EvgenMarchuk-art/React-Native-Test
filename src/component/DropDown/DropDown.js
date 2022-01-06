@@ -12,7 +12,7 @@ const cities = [...new Array(20)].map((_, index) => {
 });
 
 const DropdownComponent = () => {
-  console.log(cities);
+
   const [value, setValue] = useState(null);
   const [isFocus, setIsFocus] = useState(false);
 

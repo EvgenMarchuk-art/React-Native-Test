@@ -1,84 +1,84 @@
-// Example of Popup Dialog in React Native
-// https://aboutreact.com/popup-dialog/
-
-// import React in our code
-import React, {useState} from 'react';
-
-// import all the components we are going to use
-import {
-  SafeAreaView,
-  View,
-  Text,
-  TouchableHighlight,
-  StyleSheet,
-  Button,
-} from 'react-native';
-
-import Dialog, {
-  DialogTitle,
-  DialogContent,
-  DialogButton,
-  ScaleAnimation,
-} from 'react-native-popup-dialog';
-
-import PopUPStyle from './PopUPStyle';
+import React, {Component, useState} from 'react';
+import {Alert, Modal, StyleSheet, Text, Pressable, View} from 'react-native';
 import Multiple from '../multiple /Multiple';
 
 const PopUp = () => {
-  const [scaleAnimationDialog, setScaleAnimationDialog] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   return (
-    <SafeAreaView>
-      <View>
-        {/* For Scale Animation Dialog */}
-        <TouchableHighlight
-          style={PopUPStyle.buttonStyle}
-          onPress={() => setScaleAnimationDialog(true)}>
-          <Text style={PopUPStyle.buttonTextStyle}>Upload Photo</Text>
-        </TouchableHighlight>
-
-        <Dialog
-          onTouchOutside={() => {
-            setScaleAnimationDialog(false);
-          }}
-          width={0.9}
-          visible={scaleAnimationDialog}
-          dialogAnimation={new ScaleAnimation()}
-          onHardwareBackPress={() => {
-            setScaleAnimationDialog(false);
-            console.log('onHardwareBackPress');
-            return true;
-          }}
-          dialogTitle={<DialogTitle title="Uploud Photo" hasTitleBar={false} />}
-          actions={[
-            <DialogButton
-              text="DISMISS"
-              onPress={() => {
-                setScaleAnimationDialog(false);
-              }}
-              key="button-1"
-            />,
-          ]}>
-          <DialogContent
-            style={PopUPStyle.FirstDialogContentStyle}>
-            <View
-              style={PopUPStyle.DialogContentFirstViewStyle}>
-              <Multiple />
-            </View>
-
-            <Button
-              title="Close"
-              onPress={() => {
-                setScaleAnimationDialog(false);
-              }}
-              key="button-1"
-            />
-          </DialogContent>
-        </Dialog>
-      </View>
-    </SafeAreaView>
+    <View style={styles.centeredView}>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={visible}
+        onRequestClose={() => {
+          Alert.alert('Modal has been closed.');
+          setVisible(true);
+        }}>
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Multiple handleClose={() => setVisible(false)} />
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setVisible(false)}>
+              <Text style={styles.textStyle}>Hide Modal</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+      <Pressable
+        style={[styles.button, styles.buttonOpen]}
+        onPress={() => setVisible(true)}>
+        <Text style={styles.textStyle}>Show Modal</Text>
+      </Pressable>
+    </View>
   );
 };
 
-export default PopUp;
+const styles = StyleSheet.create({
+  centeredView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 22,
+  },
+  modalView: {
+    width: 300,
+    height: 300,
+    margin: 20,
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  button: {
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+  },
+  buttonOpen: {
+    backgroundColor: '#F194FF',
+  },
+  buttonClose: {
+    backgroundColor: '#2196F3',
+  },
+  textStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+  },
+});
 
+export default PopUp;

@@ -25,7 +25,7 @@ const UselessTextInput = () => {
     const input = phone.replace(/\D/g, '').substring(0, 10);
 
     const first = input.substring(0, 3);
-    console.log(first);
+
     const middle = input.substring(3, 6);
     const last = input.substring(6, 10);
     if (input.length > 6) {
