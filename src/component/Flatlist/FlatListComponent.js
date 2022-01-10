@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import MultipleStyle from '../multiple /MultipleStyle';
 import XClose from '../../assets/svg-image/XClose.svg';
-import ImagesContext from '../../provider/context';
+import ImagesContext from '../../provider/ImageProvider/imageContext';
 
 const FlatListComponent = () => {
   const {images, deleteImg} = useContext(ImagesContext);

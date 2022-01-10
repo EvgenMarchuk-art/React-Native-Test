@@ -1,7 +1,7 @@
 import React, {useState, useMemo} from 'react';
-import ImagesContext from './context';
+import ImagesContext from './imageContext';
 
-const ImagesProvider = ({children}) => {
+const ImageContextProvider = ({children}) => {
 
 
   const [images, setImages] = useState([]);
@@ -27,4 +27,4 @@ const ImagesProvider = ({children}) => {
   );
 };
 
-export default ImagesProvider;
+export default ImageContextProvider;

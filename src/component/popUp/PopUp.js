@@ -1,9 +1,11 @@
-import React, {Component, useState} from 'react';
+import React, {Component, useContext, useState} from 'react';
 import {Alert, Modal, StyleSheet, Text, Pressable, View} from 'react-native';
 import Multiple from '../multiple /Multiple';
+import ImagesContext from '../../provider/ImageProvider/imageContext';
+import HandleCloseContext from '../../provider/handleCloseProvider/handleCloseContext';
 
 const PopUp = () => {
-  const [visible, setVisible] = useState(false);
+  const {visible, setVisible} = useContext(HandleCloseContext);
 
   return (
     <View style={styles.centeredView}>
@@ -17,7 +19,7 @@ const PopUp = () => {
         }}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Multiple handleClose={() => setVisible(false)} />
+            <Multiple />
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => setVisible(false)}>

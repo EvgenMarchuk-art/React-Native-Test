@@ -8,11 +8,12 @@ import {
 } from 'react-native';
 import MultipleStyle from '../multiple /MultipleStyle';
 import XClose from '../../assets/svg-image/XClose.svg';
-import ImagesContext from '../../provider/context';
+import ImagesContext from '../../provider/ImageProvider/imageContext';
 import RegisterForm from '../registerForm/RegisterForm';
 import DropdownComponent from '../DropDown/DropDown';
 import PopUp from '../popUp/PopUp';
 import FlatListComponent from '../Flatlist/FlatListComponent';
+import HandleCloseProvider from '../../provider/handleCloseProvider';
 
 const ListOfComponents = () => {
   const {deleteImg} = useContext(ImagesContext);
@@ -40,7 +41,9 @@ const ListOfComponents = () => {
       <>
         <RegisterForm />
         <DropdownComponent />
+        <HandleCloseProvider>
         <PopUp />
+        </HandleCloseProvider>
       </>
     );
   }, []);

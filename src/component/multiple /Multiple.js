@@ -13,12 +13,14 @@ import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import XClose from '../../assets/svg-image/XClose.svg';
 
 import MultipleStyle from './MultipleStyle';
-import ImagesContext from '../../provider/context';
+import ImagesContext from '../../provider/ImageProvider/imageContext';
 import {addLog} from 'react-native/Libraries/LogBox/Data/LogBoxData';
 import async from 'async';
+import HandleCloseContext from '../../provider/handleCloseProvider/handleCloseContext';
 
-const Multiple = ({handleClose}) => {
+const Multiple = () => {
   const {setImages} = useContext(ImagesContext);
+  const {setVisible} = useContext(HandleCloseContext);
 
   const requestCameraPermission = async () => {
     const res = await request(PERMISSIONS.ANDROID.CAMERA);
@@ -77,7 +79,7 @@ const Multiple = ({handleClose}) => {
 
   const handleChooseImage = type => () => {
     chooseFile(type);
-    handleClose();
+    setVisible(false);
   };
 
   const openGallery = options => {
