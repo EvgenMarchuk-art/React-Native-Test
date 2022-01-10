@@ -3,7 +3,7 @@
 
 // Import React
 import React, {useContext} from 'react';
-import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
+import {check, PERMISSIONS, RESULTS, request} from 'react-native-permissions';
 
 import {SafeAreaView, Text, View, TouchableOpacity} from 'react-native';
 
@@ -21,8 +21,12 @@ const Multiple = ({handleClose}) => {
   const {setImages} = useContext(ImagesContext);
 
   const requestCameraPermission = async () => {
-    const res = await check(PERMISSIONS.ANDROID.CAMERA);
-    return res === RESULTS.GRANTED;
+    const res = await request(PERMISSIONS.ANDROID.CAMERA);
+    if (res === RESULTS.GRANTED) {
+      console.log('Камера permission granted.');
+    } else {
+      console.log('Камера perrmission denied.');
+    }
   };
 
   const requestExternalWritePermission = async () => {
@@ -65,8 +69,9 @@ const Multiple = ({handleClose}) => {
     try {
       await requestCameraPermission();
 
-      const ass = await openCamera(options);
-      setImages(ass);
+      const assets = await openCamera(options);
+      console.log(assets);
+      setImages(assets);
     } catch (e) {}
   };
 
