@@ -3,24 +3,9 @@
 
 // Import React
 import React, {useContext} from 'react';
-// Import required components
-// import { PermissionsAndroid
-// } from 'react-native-permissions';
-import {PERMISSIONS} from 'react-native-permissions';
+import {check, PERMISSIONS, RESULTS} from 'react-native-permissions';
 
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-  Platform,
-  Button,
-  TouchableWithoutFeedback,
-  PermissionsAndroid,
-  Dimensions,
-} from 'react-native';
+import {SafeAreaView, Text, View, TouchableOpacity} from 'react-native';
 
 // Import Image Picker
 // import ImagePicker from 'react-native-image-picker';
@@ -29,86 +14,60 @@ import XClose from '../../assets/svg-image/XClose.svg';
 
 import MultipleStyle from './MultipleStyle';
 import ImagesContext from '../../provider/context';
+import {addLog} from 'react-native/Libraries/LogBox/Data/LogBoxData';
+import async from 'async';
 
 const Multiple = ({handleClose}) => {
   const {setImages} = useContext(ImagesContext);
 
   const requestCameraPermission = async () => {
-    if (Platform.OS === 'android') {
-      try {
-        const granted = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISIONS.CAMERA,
-          {
-            title: 'Camera Permission',
-            message: 'App needs camera permission',
-          },
-        );
-        // If CAMERA Permission is granted
-        return granted === PermissionsAndroid.RESULTS.GRANTED;
-      } catch (err) {
-        console.warn(err);
-        return false;
-      }
-    } else {
-      return true;
-    }
+    const res = await check(PERMISSIONS.ANDROID.CAMERA);
+    return res === RESULTS.GRANTED;
   };
-
-
 
   const requestExternalWritePermission = async () => {
-    if (Platform.OS === 'android') {
-      try {
-        const granted = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-          {
-            title: 'External Storage Write Permission',
-            message: 'App needs write permission',
-          },
-        );
-        // If WRITE_EXTERNAL_STORAGE Permission is granted
-        return granted === PermissionsAndroid.RESULTS.GRANTED;
-      } catch (err) {
-        console.warn(err);
-        alert('Write permission err', err);
-      }
-      return false;
-    } else {
-      return true;
-    }
+    const result = await check(PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE);
+    return result === RESULTS.GRANTED;
   };
 
-  const captureImage = async type => {
+  const openCamera = options => {
+    return new Promise((resolve, reject) => {
+      launchCamera(options, response => {
+        if (response.didCancel) {
+          reject(new Error('User cancelled camera picker'));
+          return;
+        } else if (response.errorCode === 'camera_unavailable') {
+          reject(new Error('Cammera not available on device'));
+          return;
+        } else if (response.errorCode === 'permission') {
+          reject(new Error('Permission not satisfied'));
+          return;
+        } else if (response.errorCode === 'others') {
+          reject(new Error(response.errorMessage));
+          return;
+        }
+        resolve(response.assets);
+      });
+    });
+  };
+
+  const captureImage = async function (type) {
     let options = {
       mediaType: type,
       maxWidth: 300,
       maxHeight: 550,
       quality: 1,
       videoQuality: 'low',
-      durationLimit: 30, //Video max duration in seconds
+      durationLimit: 60, //Video max duration in seconds
       includeBase64: true,
     };
 
-    let isCameraPermitted = await requestCameraPermission();
-    let isStoragePermitted = await requestExternalWritePermission();
-    if (isCameraPermitted && isStoragePermitted) {
-      launchCamera(options, response => {
-        if (response.didCancel) {
-          alert('User cancelled camera picker');
-          return;
-        } else if (response.errorCode === 'camera_unavailable') {
-          alert('Camera not available on device');
-          return;
-        } else if (response.errorCode === 'permission') {
-          alert('Permission not satisfied');
-          return;
-        } else if (response.errorCode === 'others') {
-          alert(response.errorMessage);
-          return;
-        }
-        setImages(response.assets[0]);
-      });
-    }
+    try {
+      await requestCameraPermission();
+
+      const ass = await openCamera(options);
+      setImages(ass);
+    } catch (e) {}
   };
 
   const handleChooseImage = type => () => {
@@ -116,32 +75,43 @@ const Multiple = ({handleClose}) => {
     handleClose();
   };
 
-  const chooseFile = type => {
+  const openGallery = options => {
+    return new Promise((resolve, reject) => {
+      launchImageLibrary(options, response => {
+        if (response.didCancel) {
+          reject(new Error('User cancelled camera picker'));
+          return;
+        } else if (response.errorCode === 'camera_unavailable') {
+          reject(new Error('Cammera not available on device'));
+          return;
+        } else if (response.errorCode === 'permission') {
+          reject(new Error('Permission not satisfied'));
+          return;
+        } else if (response.errorCode === 'others') {
+          reject(new Error(response.errorMessage));
+          return;
+        }
+        resolve(response.assets);
+      });
+    });
+  };
+
+  const chooseFile = async type => {
     let options = {
       mediaType: type,
-      maxWidth: 300,
-      maxHeight: 550,
+      maxWidth: 1024,
+      maxHeight: 768,
       quality: 1,
       selectionLimit: 0,
       includeBase64: true,
     };
 
-    launchImageLibrary(options, response => {
-      if (response.didCancel) {
-        alert('User cancelled camera picker');
-        return;
-      } else if (response.errorCode === 'camera_unavailable') {
-        alert('Camera not available on device');
-        return;
-      } else if (response.errorCode === 'permission') {
-        alert('Permission not satisfied');
-        return;
-      } else if (response.errorCode === 'others') {
-        alert(response.errorMessage);
-        return;
-      }
-      setImages(response.assets);
-    });
+    try {
+      await requestExternalWritePermission();
+
+      const assets = await openGallery(options);
+      setImages(assets);
+    } catch (e) {}
   };
 
   return (
